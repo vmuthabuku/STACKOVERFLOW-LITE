@@ -5,6 +5,25 @@ body {
     background-position: center;
 }
 
+.header {
+    background: cadetblue;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.hd {
+    float: left;
+    font-family: "Helvetica";
+    font-size: 15px;
+    color: white;
+}
+
+.nav {
+    float: right;
+    padding-top: 15px;
+}
+
 ul {
     margin: 0;
     padding: 0;
