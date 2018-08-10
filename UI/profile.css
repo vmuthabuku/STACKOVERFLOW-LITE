@@ -97,3 +97,7 @@ body {
     border: 25px solid lightblue;
     padding-right: 50px;
 }
+
+.q p:hover {
+    background-color: green;
+}
