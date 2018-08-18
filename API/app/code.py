@@ -1,7 +1,7 @@
 from flask import request, jsonify, abort, Flask
 
 # local import
-from config import app_config
+from instance.config import app_config
 
 def create_app(config_name):
 
