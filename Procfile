@@ -1,1 +1,1 @@
-web:gunicorn run:app
+web:gunicorn --pythonpath API app.code:app
