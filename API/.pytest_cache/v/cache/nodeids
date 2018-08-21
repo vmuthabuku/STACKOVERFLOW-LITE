@@ -1,8 +1,0 @@
-[
-  "tests/test_code.py::StackOverflow_lite::test_answer_question",
-  "tests/test_code.py::StackOverflow_lite::test_delete_question",
-  "tests/test_code.py::StackOverflow_lite::test_edit_question",
-  "tests/test_code.py::StackOverflow_lite::test_post_question",
-  "tests/test_code.py::StackOverflow_lite::test_view_all_questions",
-  "tests/test_code.py::StackOverflow_lite::test_view_single_question"
-]

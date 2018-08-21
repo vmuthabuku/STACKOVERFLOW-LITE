@@ -1,3 +1,5 @@
+"""This is a python flask app to check for endpoints"""
+
 from flask import request, jsonify, abort, Flask
 
 # local import
@@ -13,7 +15,7 @@ def create_app(config_name):
     @app.route('/api/v1/questions', methods=['POST'])
     def question():
         #pylint: disable=unused-variable
-        # Post a question
+        """Returns a created question"""
         question = {'id': len(questions)+1,
             'Questions': request.json.get('Question'),
         }
@@ -23,13 +25,13 @@ def create_app(config_name):
     @app.route('/api/v1/questions', methods=['GET'])
     def view_all_questions():
         #pylint: disable=unused-variable
-        # retrieve all questions
+        """Returns all questions asked by the user"""
         return jsonify({'Questions': questions}), 200
 
     @app.route('/api/v1/questions/<int:id>', methods=['GET'])
     def single_question(id):
         #pylint: disable=unused-variable
-        # retrive a question by it's ID
+        """Returns specific and single question by its id"""
         single_question = [question for question in questions if question['id'] == id]
         if len(single_question) == 0:
             return jsonify({'Message': "No question found"})
@@ -39,7 +41,7 @@ def create_app(config_name):
     @app.route('/api/v1/questions/<int:id>', methods=['PUT'])
     def edit_question(id):
         #pylint: disable=unused-variable
-        # Edit a specific question 
+        """Returns the edited question"""
         edit_question = [question for question in questions if question['id'] == id]
         if len(edit_question) == 0:
             return jsonify({'Message': "No question found"})
@@ -51,7 +53,7 @@ def create_app(config_name):
     @app.route('/api/v1/questions/<int:id>', methods=['DELETE'])
     def delete_question(id):
         #pylint: disable=unused-variable
-        # Delete a specific question
+        """Returns the deleted question """
         delete_question = [question for question in questions if question['id'] == id]
         if len(delete_question) == 0:
             return jsonify({'Message':"No question found"})
@@ -63,11 +65,11 @@ def create_app(config_name):
     @app.route('/api/v1/questions/<int:id>/answers', methods=['POST'])
     def answer_question(id):
         #pylint: disable=unused-variable
-        # retrive a question by it's ID
+        """Checks for a question by its Id"""
         question = [question for question in questions if question['id'] == id]
         if len(question) == 0:
             return jsonify({'Message': "No question found"})
-        # Answer a specific question
+        """Returns the answer to the specific question"""
         answer_question = {'id': len(answers)+1,
             'Answer': request.json.get('Answer')
         }

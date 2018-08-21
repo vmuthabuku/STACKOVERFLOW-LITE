@@ -55,5 +55,13 @@ class StackOverflow_lite(unittest.TestCase):
             '/api/v1/questions/1/answers', data=json.dumps(self.answers), content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
+    def test_question_does_not_exist(self):
+        """Test question does not exist."""
+        response = self.client.get(
+            '/api/v1/questions/12121', data=json.dumps(self.questions), content_type='application/json')
+        self.assertEqual(response.status_code,200)
+        data = json.loads(response.data.decode('UTF-8'))
+        self.assertEqual(data['Message'], "No question found")
+        
 if __name__ == "__main__":
     unittest.main()
