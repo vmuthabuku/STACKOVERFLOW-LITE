@@ -50,4 +50,15 @@ def question():
     question.save()
     return jsonify({'Questions': question.__dict__}), 201
 
+@bPrint.route('/api/v2/users/questions', methods=['GET'])
+@jwt_required
+def view_all_questions():
+    email = get_jwt_identity()
+    user = get_user(email)
+
+    questions = get_questions(user['id'])
+    if questions is None:
+    # retrieve all questions
+        return jsonify({'message': 'No questions found'})
+    return jsonify({'Questions': questions}), 200
 
