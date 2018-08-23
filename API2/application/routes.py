@@ -75,3 +75,21 @@ def single_question(id):
 
     return jsonify({'Questions': question}), 200
 
+@bPrint.route('/api/v2/users/questions/<int:id>', methods=['PUT'])
+@jwt_required
+def modify_question(id):
+    email = get_jwt_identity()
+    user = get_user(email)
+    # Edit a specific question 
+    edit = get_question(id)
+
+    if edit is None:
+        return jsonify({'message': 'Question not available'})
+
+    edit['question'] = request.json.get('question'),
+
+    edit_question(id, edit)
+
+    return jsonify({'Questions': edit}), 200
+
+
