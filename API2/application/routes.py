@@ -105,4 +105,17 @@ def remove_question(id):
     delete_question(id)
     return jsonify({'message': 'Question has been deleted!'}), 200
 
+@bPrint.route('/api/v2/users/questions/<int:id>/answers', methods=['POST'])
+@jwt_required
+def answer_question(id):
+    # retrive a question by it's ID
+    email = get_jwt_identity()
+    question = get_question(id)
+    # Answer a specific question
+    answers = Answer(
+        answer = request.json.get("answer"),
+        date_posted = request.json.get("date_posted"),
+        question_id = (question["id"]))
+    answers.save()
+    return jsonify({'Answers': answers.__dict__}), 201
 
