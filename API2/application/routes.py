@@ -37,4 +37,17 @@ def signin():
         return jsonify({'message': 'Logged in successfully!', 'token': token})
     return make_response('Your account does not exist!, Please Register!'), 401
 
+@bPrint.route('/api/v2/users/questions', methods=['POST'])
+@jwt_required
+def question():
+
+    email = get_jwt_identity()
+    user = get_user(email)
+    # post a single question
+    question = Questions(
+        question = request.json.get("question"),
+        user_id = (user["id"]))
+    question.save()
+    return jsonify({'Questions': question.__dict__}), 201
+
 
