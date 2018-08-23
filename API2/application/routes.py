@@ -92,4 +92,17 @@ def modify_question(id):
 
     return jsonify({'Questions': edit}), 200
 
+@bPrint.route('/api/v2/users/questions/<int:id>', methods=['DELETE'])
+@jwt_required
+def remove_question(id):
+    email = get_jwt_identity()
+    user = get_user(email)
+    # Delete a specific question 
+    question = get_question(id)
+    if question is None:
+        return jsonify({'message': 'Question not available'})
+
+    delete_question(id)
+    return jsonify({'message': 'Question has been deleted!'}), 200
+
 
