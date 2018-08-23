@@ -1,0 +1,89 @@
+.header {
+    background: cadetblue;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.hd {
+    float: left;
+    font-family: "Helvetica";
+    font-size: 15px;
+    color: white;
+}
+
+.nav {
+    float: right;
+    padding-top: 15px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: black;
+}
+
+ul li {
+    float: left;
+    width: 200px;
+    height: 40px;
+    opacity: .8;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+ul li a:hover {
+    background-color: green;
+}
+
+ul li ul li {
+    display: none;
+}
+
+ul li:hover ul li {
+    display: block;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column-gap: 1em;
+    padding-top: 10px;
+    grid-row-gap: 3em;
+}
+
+.wrapper>div {
+    background: #eee;
+    padding: 1em;
+}
+
+.wrapper div:nth-child(odd) {
+    background: #ddd;
+}
+
+body {
+    color: #000000;
+    margin-left: 20;
+    margin-right: 20;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.text-box {
+    padding-top: 30px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+}
+
+#wrapper {
+    padding-top: 50px;
+}
