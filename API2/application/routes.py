@@ -62,3 +62,16 @@ def view_all_questions():
         return jsonify({'message': 'No questions found'})
     return jsonify({'Questions': questions}), 200
 
+@bPrint.route('/api/v2/users/questions/<int:id>', methods=['GET'])
+@jwt_required
+def single_question(id):
+    email = get_jwt_identity()
+    user = get_user(email)
+
+    # retrive a question by it's ID
+    question = get_question(id)
+    if question is None:
+        return jsonify({'message': 'Question not available'})
+
+    return jsonify({'Questions': question}), 200
+
