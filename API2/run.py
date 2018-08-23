@@ -1,9 +1,12 @@
 import os
 
-from app.code import create_app
+from application.app import create_app
 
-config_name = os.getenv('APP_SETTINGS') # config_name = "development"
+config_name = os.getenv('ENVIRONMENT')  # config_name = "development"
 app = create_app(config_name)
 
+from managers import migrate
+migrate()
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
