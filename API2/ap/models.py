@@ -1,4 +1,4 @@
-from Models import Model
+from routes import Model
 
 class User(object):
     """This class represents the users for the StackOverflow-lite."""

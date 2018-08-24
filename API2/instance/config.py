@@ -16,7 +16,7 @@ class TestingConfig(Config):
     """Configuration for Testing."""
     TESTING = True
     DEBUG = True
-    DATABASE_NAME = "test_stackoverflow"
+    DATABASE_NAME = "stackoverflowlite"
     JWT_SECRET_KEY = "qwertyuiop"
 
 class StagingConfig(Config):

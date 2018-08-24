@@ -1,0 +1,202 @@
+
+HOST: 
+
+# STACKOVERFLOW-LITE
+
+
+
+## Project Overview [/questions]
+StackOverflow-lite App is a platform where people can ask questions and provide answers.
+
+## Required Features
+1. Users can create an account and log in.
+2. The users should be able to post a question
+3. The users should be able to view all questions.
+4. The users should be able to view a single question.
+5. The user should be able to edit a single a question
+6. The user should be able to delete a question.
+7. The user should be able to post an answer to a question.
+8. The user should be able to mark an answer as preferred.
+
+
+Making API calls will require the following header
+
++ Content-Type: application/json
+
+After authentication, the rest of the endpoints will require to include the bearer token that is sent with the login reponse.
+
+Authentication: Bearer [Token]
+
+## Register a User [/users/signup]
+
+### Sign Up [POST]
+
+Where a user can register his/her credentials on the API
+
++ Request (application/json)
+
+        {
+            "username": "Arnold Osoro",
+            "email": "mail@gmail.com",
+            "password": "*********"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            user: 
+
+    + Body
+
+            {
+                "message": "New user registered!"
+            }
+            
+## Login a User [/users/signin]
+
+### Sign In [POST]
+
+The user can  login with their email and password
+
++ Request (application/json)
+        
+        {
+            "email": "mail@gmail.com",
+            "password": "*******"
+        }
+        
++ Response 200 (application/json)
+        {
+            "message": "Logged in successfully!",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1Mjg1NTAzMjgsIm5iZiI6MTUyODU1MDMyOCwianRpIjoiOTI5MWM1OGUtZGIzYy00ODczLWI0MWUtYWE5NjdhZDdhNGYxIiwiZXhwIjoxNTI4NTUxMjI4LCJpZGVudGl0eSI6ImJyeW8iLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.rKyae63Dyw_Ta-9ZblOyY7qgrnEQNy0-aTSVmu0rBKs"
+        }
+        
+        
+## User StackOverflow-lite [/users/questions]
+
+#### User can post a question [POST]
+
+The registered user can post a question.
+
++ Request (application/json)
+        
+        {
+            "question": "What is a flask restful API"
+        }
+        
++ Response 201 (application/json)
+        
+        {
+            "Questions": {
+                "question": "What is a flask restuful API",
+                "date_posted": "Wed, 22 Aug 2018 17:40:24 GMT"
+                "id": 0,
+                "user_id": 1
+            }
+        }
+
+### User can get all questions [GET]
+
+A user can be able to view all his/her questions on the API.
+
++ Response 200 (application/json)
+        
+        {
+            "Questions": [
+                {
+                    "date_posted": "Wed, 22 Aug 2018 17:40:24 GMT",
+                    "id": 9,
+                    "question": "What is a flask restful api",
+                    "user_id": 11
+                }
+            ]
+        }
+
+### User can get a single question [GET]
+
+A user can view a particular question's details he/she posted on the API.
+
++ Parameters
+    + question_id(integer) - Id of the question the user wants to get details.
+
++ Response 200 (application/json)
+
+        {
+            "Questions": [
+                {
+                    "date_posted": "Wed, 22 Aug 2018 17:40:24 GMT",
+                    "id": 9,
+                    "question": "What is a flask restful api",
+                    "user_id": 11
+                }
+            ]
+        }
+
+### User can Modify a question [PUT]
+
+A user can modify a particular question which he/she posted on the API.
+
++ Parameters
+    + question_id (integer) - Id of the question the user wants to edit/modify.
+    
+
++ Request (application/json)
+
+        {
+            "question": "What is a Django in python"
+        }
+        
++ Response 201 (application/json)
+        
+        {
+            "Questions": {
+                "date_posted": "Wed, 22 Aug 2018 23:58:29 GMT",
+                "id": 9,
+                "question": [
+                    "What is Django in python"
+                ],
+                "user_id": 11
+            }
+        }
+        
+
+### User can delete a Request [DELETE]
+
+The user can delete a particular question he/she posted on the API.
+
++ Parameters
+    + question_id(integer) - The ID of the question the user can delete a question.
+    
+
++ Response 200 (application/json)
+    
+        {
+            "message": "Question has been deleted!"
+        }
+
+
+### User can answer a question [POST]
+
+A registered User can answer a question on the API.
+
++ Parameters
+    + question_id(integer) - The ID of the question the user can post an answer.
+    
+    
++ Request (application/json)
+        
+        {
+            "answer": "Django is a python framework"
+        }
+
++ Response 201 (application/json)
+        
+        {
+            "Answers": {
+                "answer": "Django is a python framework",
+                "date_posted": "Thu, 23 Aug 2018 00:09:39 GMT",
+                "id": 0,
+                "question_id": 9
+            }
+        }

@@ -1,11 +1,11 @@
 import os
 
-from application.app import create_app
+from ap.app import app
 
-config_name = os.getenv('ENVIRONMENT')  # config_name = "development"
-app = create_app(config_name)
+#config_name = os.getenv('APP_SETTINGS')  # config_name = "development"
+#app = create_app()
 
-from managers import migrate
+from manage import migrate
 migrate()
 
 if __name__ == '__main__':

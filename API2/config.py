@@ -6,8 +6,11 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET = os.getenv('SECRET_12345')
 
-class DevelopmentConfig(Config):
+class Development():
     """Configuration from Development."""
+    DATABASE_NAME = os.environ['DATABASE_NAME']
+    password = os.environ['password']
+    postgres = os.environ['postgres']
     DEBUG = True
 
 class TestingConfig(Config):
@@ -23,10 +26,10 @@ class ProductionConfig(Config):
     """Configration for Production"""
     DEBUG = False
     TESTING = False
-
+'''
 app_config = {
     'development' : DevelopmentConfig,
     'testing' : TestingConfig,
     'staging' : StagingConfig,
     'production' : ProductionConfig
-}
+}'''

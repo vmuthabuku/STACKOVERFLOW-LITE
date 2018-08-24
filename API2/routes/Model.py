@@ -1,13 +1,13 @@
 import psycopg2
 import psycopg2.extras
 import os
-from application.database import Database
+from ap.database import Database
 
 conn = Database.conn
 cur = Database.cursor
 
 def insert_user(users):
-    cur.execute("INSERT INTO USERS(name, email, password) values(%s,%s,%s)",(
+    cur.execute("INSERT INTO user(name, email, password) values(%s,%s,%s)",(
         users.name,
         users.email,
         users.password))
@@ -15,7 +15,7 @@ def insert_user(users):
 
 
 def get_user(email):
-    cur.execute("SELECT * FROM users WHERE email = %s", (email,))
+    cur.execute("SELECT * FROM user WHERE email = %s", (email,))
     user = cur.fetchone()
     if user is None:
         return None
@@ -24,13 +24,13 @@ def get_user(email):
     
 
 def post_question(questions):
-    cur.execute("INSERT INTO questions (question, user_id) values(%s,now(),%s)",(
+    cur.execute("INSERT INTO questions (question, userId) values(%s,now(),%s)",(
         questions.question,
-        questions.user_id))
+        questions.userId))
     conn.commit()
 
-def get_questions(user_id):
-    cur.execute("SELECT * FROM questions WHERE user_id =%s",(user_id,))
+def get_questions(userId):
+    cur.execute("SELECT * FROM questions WHERE user_id =%s",(userId,))
     questions = cur.fetchall()
     rows = []
     for row in questions:

@@ -3,9 +3,9 @@ import os
 import json
 
 
-from managers import migrate, reset_migration
+from manage import migrate, reset_migration
 
-from application.app import create_app
+from ap.app import create_app
 
 
 class StackOverflow_lite_Users(unittest.TestCase):
